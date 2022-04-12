@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <title>TOP | TodoList</title>
+  <script src="main.js" defer charset="utf-8"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="wrapper-tertiary">
+      <header>
+        <h1>Todo List</h1>
+      </header>
+      <main>
+        <aside>
+          <nav class="projects-nav">
+            <h3>Projects</h3>
+            <ul data-id='projects-list'>
+            </ul>
+            <button data-id='btn-create-new-project' class="btn-create-new-project">
+              <span>+ Create New Project</span>
+            </button>
+          </nav>
+        </aside>
+        <div class="todo-container">
+          <h2 data-id='current-project-title' class='todo-container-title'>Current Project</h2>
+          <div id="todo-container">
+          </div>
+        </div>
+        <template data-id='todo-template'>
+          <article class="todo">
+            <div class="todo-left">
+              <button data-id='btn-todo-check' class='btn-check'>
+                <div class="circle"></div>
+              </button>
+              <div class="todo-info">
+                <p data-id='todo-title'>Hello</p>
+                 <p data-id='todo-date'>Hi</p>
+              </div>
+            </div>
+            <div class="todo-right">
+              <div class='todo-right-urgency-container'>
+                <button data-id='btn-todo-delete'>X</button>
+              </div>
+              <div class="todo-right-expand-container">
+                <button data-id='btn-todo-expand'>O</button>
+              </div>
+            </div>
+          </article>
+        </template>
+        <section data-id='task-creation-container' class="task-creation-container">
+          <form id="create-new-task">
+            <div class="task-creation-header">
+              <h2>New Task...</h2>
+              <button data-id='btn-task-close' class='btn-task-close'>&times;</button>
+            </div>
+            <label for="Task-Name">Task Name</label>
+            <input id='task-title' type="text" placeholder="Hit The Gym">
+            <label for="task-description"></label>
+            <textarea id='task-description' name="task-description" rows="8" cols="80" placeholder="Notes?"></textarea>
+            <label for="Due-Date">Due Date</label>
+            <input id='task-date' type="date">
+            <label for="project">Choose a Project:</label>
+            <select id="project" name="project">
+
+            </select>
+            <label for="Urgency">Urgency</label>
+            <label>Urgent</label>
+            <input type="radio" name="Urgency" id='urgent' value='urgent' checked>
+            <label>Go Fast</label>
+            <input type="radio" name="Urgency" id='go-fast' value='go-fast'>
+            <label>Low Priority</label>
+            <input type="radio" name="Urgency" id='low-priority' value='low-priority'>
+            <label>Chill</label>
+            <input type="radio" name="Urgency" id='chill' value='chill'>
+            <input type="submit">
+          </form>
+        </section>
+        <section data-id='expanded-modal-container' class='expanded-modal-container'>
+          <div class="expanded-modal">
+            <div class="expanded-modal-header">
+              <h2>Task-Info</h2>
+              <button data-id='btn-expanded-close' class='btn-expanded-modal-close'>&times;</button>
+            </div>
+            <div class="expanded-modal-body">
+              <div class="expanded-modal-left">
+                <p><strong>Task Title: </strong><em data-id='expanded-modal-title'> Name</em></p>
+                <p><strong>Task Date: </strong><em data-id='expanded-modal-date'> Name</em></p>
+                <p><strong>Task Notes: </strong><em data-id='expanded-modal-notes'> lorem20</em></p>
+                <p><strong>Task Urgency: </strong><em data-id='expanded-modal-urgency'> Name</em></p>
+              </div>
+            </div>
+            <div class="expanded-modal-footer">
+              <div class="edit-container"><button data-id='btn-expanded-edit'>Edit</button></div>
+              <div class="delete-container"><button data-id='btn-expanded-dlt'>Delete</button></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+    <div class="create-form-button">
+      <button data-id='btn-create-new-task' class="create-form" id='create-task'> + </button>
+    </div>
+    <footer>
+      <h3>Kieran Singh</h3>
+    </footer>
+  </div>
+  <section class="new-project-form-container" data-id='new-project-form-container'>
+    <form id="new-project-form">
+      <div class="new-project-form-header">
+        <h2>New Project</h2>
+        <button data-id='btn-project-close' class='btn-project-close'>&times;</button>
+      </div>
+      <div><label for="Project-Name">Project Name</label></div>
+      <input id='new-project-name' type="text" name="Project-Name" required>
+      <input class='submit-btn' type="submit">
+    </form>
+  </section>
+  <section data-id='task-edit-container' class="task-creation-container">
+    <form id="create-new-task">
+      <div class="task-creation-header">
+        <h2>New Task...</h2>
+        <button data-id='btn-task-close' class='btn-task-close'>&times;</button>
+      </div>
+      <label for="Task-Name">Task Name</label>
+      <input id='task-edit-title' type="text" placeholder="Hit The Gym">
+      <label for="task-description"></label>
+      <textarea id='task-edit-description' name="task-description" rows="8" cols="80" placeholder="Notes?"></textarea>
+      <label for="Due-Date">Due Date</label>
+      <input id='task-edit-date' type="date">
+      <label for="project">Choose a Project:</label>
+      <select id="project" name="project">
+
+      </select>
+      <label for="Urgency">Urgency</label>
+      <label>Urgent</label>
+      <input type="radio" name="Urgency" id='urgent' value='urgent' checked>
+      <label>Go Fast</label>
+      <input type="radio" name="Urgency" id='go-fast' value='go-fast'>
+      <label>Low Priority</label>
+      <input type="radio" name="Urgency" id='low-priority' value='low-priority'>
+      <label>Chill</label>
+      <input type="radio" name="Urgency" id='chill' value='chill'>
+      <input type="submit">
+    </form>
+  </section>
+
+</body>
+
+</html>
