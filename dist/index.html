@@ -38,7 +38,7 @@
           <article class="todo">
             <div class="todo-left">
               <button data-id='btn-todo-check' class='btn-check'>
-                <div class="circle"></div>
+                <div data-id='btn-todo-check' class="circle"></div>
               </button>
               <div class="todo-info">
                 <p data-id='todo-title'>Hello</p>
@@ -74,12 +74,12 @@
             <label for="Urgency">Urgency</label>
             <label>Urgent</label>
             <input type="radio" name="Urgency" id='urgent' value='urgent' checked>
-            <label>Go Fast</label>
-            <input type="radio" name="Urgency" id='go-fast' value='go-fast'>
-            <label>Low Priority</label>
+            <label>High-Priority</label>
+            <input type="radio" name="Urgency" id='high-priority' value='high-priority'>
+            <label>Medium-Priority</label>
+            <input type="radio" name="Urgency" id='medium-priority' value='medium-priority'>
+            <label>Low-Priority</label>
             <input type="radio" name="Urgency" id='low-priority' value='low-priority'>
-            <label>Chill</label>
-            <input type="radio" name="Urgency" id='chill' value='chill'>
             <input type="submit">
           </form>
         </section>
@@ -125,30 +125,30 @@
     </form>
   </section>
   <section data-id='task-edit-container' class="task-creation-container">
-    <form id="create-new-task">
+    <form id="edit-task">
       <div class="task-creation-header">
         <h2>New Task...</h2>
         <button data-id='btn-task-close' class='btn-task-close'>&times;</button>
       </div>
-      <label for="Task-Name">Task Name</label>
+      <label for="task-edit-title">Task Name</label>
       <input id='task-edit-title' type="text" placeholder="Hit The Gym">
       <label for="task-description"></label>
       <textarea id='task-edit-description' name="task-description" rows="8" cols="80" placeholder="Notes?"></textarea>
-      <label for="Due-Date">Due Date</label>
+      <label for="task-edit-date">Due Date</label>
       <input id='task-edit-date' type="date">
       <label for="project">Choose a Project:</label>
-      <select id="project" name="project">
+      <select id="edit-project" name="project">
 
       </select>
-      <label for="Urgency">Urgency</label>
+      <label for="Edit-Urgency">Urgency</label>
       <label>Urgent</label>
-      <input type="radio" name="Urgency" id='urgent' value='urgent' checked>
-      <label>Go Fast</label>
-      <input type="radio" name="Urgency" id='go-fast' value='go-fast'>
-      <label>Low Priority</label>
-      <input type="radio" name="Urgency" id='low-priority' value='low-priority'>
-      <label>Chill</label>
-      <input type="radio" name="Urgency" id='chill' value='chill'>
+      <input type="radio" name="Edit-Urgency" id='urgent' value='urgent'>
+      <label>High-Priority</label>
+      <input type="radio" name="Edit-Urgency" id='high-priority' value='high-priority'>
+      <label>Medium-Priority</label>
+      <input type="radio" name="Edit-Urgency" id='medium-priority' value='medium-priority'>
+      <label>Low-Priority</label>
+      <input type="radio" name="Edit-Urgency" id='low-priority' value='low-priority'>
       <input type="submit">
     </form>
   </section>

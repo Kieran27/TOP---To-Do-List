@@ -5,11 +5,13 @@ const newTaskModal = document.querySelector('[data-id="task-creation-container"]
 const newProjectModal = document.querySelector('[data-id="new-project-form-container"]');
 const newProjectClose = document.querySelector('[data-id="btn-project-close"]');
 const expandedModal = document.querySelector('[data-id="expanded-modal-container"]');
+const editModal = document.querySelector('[data-id="task-edit-container"]');
 const newProjectForm = document.getElementById('new-project-form');
 const newTaskForm = document.getElementById('create-new-task');
 
 
 let currentProject = null;
+let objectIndex = 0;
 
 
 export {
@@ -22,5 +24,7 @@ export {
   newTaskForm,
   currentProject,
   expandedModal,
-  newProjectClose
+  newProjectClose,
+  editModal,
+  objectIndex
 };

@@ -5,15 +5,19 @@ import {
   newTaskModal,
   newProjectModal,
   currentProject,
-  expandedModal
-} from './Base-Variables.js'
+  expandedModal,
+  editModal,
+  objectIndex
+}
+ from './Base-Variables.js'
 
-import formModule from './Form-Module.js'
+import formModule from './Form-Module.js';
+import editModule from './Edit-Module.js';
 
 const uiModule = (() => {
 
   const toggleNewProjectModal = () => {
-    return newProjectModal.classList.toggle('toggle-display');
+    newProjectModal.classList.toggle('toggle-display');
   }
 
   const toggleNewTaskModal = () => {
@@ -22,6 +26,10 @@ const uiModule = (() => {
 
   const toggleExpandedModal = () => {
     return expandedModal.classList.toggle('toggle-display');
+  }
+
+  const toggleEditModal = () => {
+    return editModal.classList.toggle('toggle-display');
   }
 
   const clearNewProjectInput = (inputName) => {
@@ -106,84 +114,22 @@ const uiModule = (() => {
   }
 
   const addEventListeners = (clone) => {
-    clone.querySelector("[data-id='btn-todo-check']").addEventListener('click', markStatus);
-    clone.querySelector("[data-id='btn-todo-delete']").addEventListener('click', deleteTodo);
-    clone.querySelector("[data-id='btn-todo-expand']").addEventListener('click', expandTodo);
-  }
-
-  const markStatus = (e) => {
-    const target = e.target;
-    const article = target.parentElement.parentElement.parentElement;
-    const objectTitle = article.querySelector('[data-id="todo-title"]').textContent;
-    changeObjectInstance(objectTitle);
-  }
-
-  const changeObjectInstance = (title) => {
-    formModule.toDoArray.forEach((obj, index) => {
-      if (obj.title === title) {
-        const object = formModule.toDoArray[index];
-        object.changeStatus();
-        appendTasks()
-      }
-    })
-  }
-
-  const deleteTodo = (e) => {
-    const target = e.target;
-    const article = target.parentElement.parentElement.parentElement;
-    const objectTitle = article.querySelector('[data-id="todo-title"]').textContent;
-    formModule.toDoArray.forEach((obj, index) => {
-      if (obj.title === objectTitle) {
-        const object = formModule.toDoArray[index];
-        formModule.toDoArray.splice(index, 1);
-        appendTasks();
-      }
-    })
-  }
-
-  const expandTodo = (e) => {
-    const target = e.target;
-    const article = target.parentElement.parentElement.parentElement;
-    const objectTitle = article.querySelector('[data-id="todo-title"]').textContent;
-    appendExpandedDetails(objectTitle);
-    toggleExpandedModal();
-    addExpandedModalEventListeners()
-  }
-
-  const addExpandedModalEventListeners = () => {
-    const editBtn = document.querySelector('[data-id="btn-expanded-edit"]');
-    const deleteBtn = document.querySelector('[data-id="btn-expanded-dlt"]');
-    const closeBtn = document.querySelector('[data-id="btn-expanded-close"]');
-
-    editBtn.addEventListener('click', toggleExpandedModal);
-    deleteBtn.addEventListener('click', toggleExpandedModal);
-    closeBtn.addEventListener('click', toggleExpandedModal);
-  }
-
-  const appendExpandedDetails = (title) => {
-    const expandedTitle = document.querySelector('[data-id="expanded-modal-title"]');
-    const expandedDate = document.querySelector('[data-id="expanded-modal-date"]');
-    const expandedNotes = document.querySelector('[data-id="expanded-modal-notes"]');
-    const expandedUrgency = document.querySelector('[data-id="expanded-modal-urgency"]');
-    formModule.toDoArray.forEach((obj, index) => {
-      if (obj.title === title) {
-        expandedTitle.textContent = obj.title;
-        expandedDate.textContent = obj.date;
-        expandedNotes.textContent = obj.description;
-        expandedUrgency.textContent = obj.urgency;
-      }
-    })
+    clone.querySelector("[data-id='btn-todo-check']").addEventListener('click', editModule.decidePath);
+    clone.querySelector("[data-id='btn-todo-delete']").addEventListener('click', editModule.decidePath);
+    clone.querySelector("[data-id='btn-todo-expand']").addEventListener('click', editModule.decidePath);
   }
 
   return {
     toggleNewProjectModal,
     toggleNewTaskModal,
+    toggleExpandedModal,
+    toggleEditModal,
     clearNewProjectInput,
     clearNewTaskInputs,
     createNewProject,
     appendTasks,
     removeActiveProject,
-    setActiveProject
+    setActiveProject,
   }
 })();
 

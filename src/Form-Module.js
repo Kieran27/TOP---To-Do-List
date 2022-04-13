@@ -1,8 +1,16 @@
 import uiModule from './UI-Module.js';
 import Todo from './Todo-Class';
-import {currentProject} from './Base-Variables.js'
+import {currentProject, objectIndex} from './Base-Variables.js'
+import editModule from './Edit-Module.js'
 
 const formModule = (() => {
+
+  const editForm = document.getElementById('edit-task');
+  const editedName = document.getElementById('task-edit-title');
+  const editedDescription = document.getElementById('task-edit-description');
+  const editedDate = document.getElementById('task-edit-date');
+  const editedProject = document.getElementById('project');
+
 
   let toDoArray = [];
 
@@ -47,7 +55,33 @@ const formModule = (() => {
     console.log('hello nimious!')
   }
 
-  return { toDoArray, newProjectSubmit, newTaskSubmit, createNewOption }
+  const editTaskSubmit = (e) => {
+    e.preventDefault();
+    const editedUrgency = document.querySelector("input[name='Edit-Urgency']:checked");
+    toDoArray[objectIndex].title = editedName.value;
+    toDoArray[objectIndex].date = editedDate.value;
+    toDoArray[objectIndex].description = editedDescription.value;
+    toDoArray[objectIndex].urgency = editedUrgency.value;
+    uiModule.toggleEditModal();
+    uiModule.appendTasks();
+  }
+
+  const appendEditDetails = (expandedTitle, expandedDate, expandedNotes, expandedUrgency) => {
+    editedName.value = expandedTitle.textContent;
+    editedDate.value = expandedDate.textContent;
+    editedDescription.value = expandedNotes.textContent;
+    document.querySelectorAll("input[name='Edit-Urgency']").forEach(option => {
+      if (option.id === expandedUrgency.textContent) {
+        option.checked = true;
+      }
+    })
+  }
+
+
+
+
+
+  return { toDoArray, newProjectSubmit, newTaskSubmit, createNewOption, editTaskSubmit, appendEditDetails }
 })();
 
 export default formModule;

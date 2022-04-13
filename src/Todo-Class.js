@@ -11,4 +11,5 @@ export default class Todo {
   changeStatus() {
     this.status === false ? this.status = true : this.status = false;
   }
+
 }
