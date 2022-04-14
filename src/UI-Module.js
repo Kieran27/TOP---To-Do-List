@@ -7,7 +7,8 @@ import {
   currentProject,
   expandedModal,
   editModal,
-  objectIndex
+  objectIndex,
+  testArray
 }
  from './Base-Variables.js'
 
@@ -65,7 +66,7 @@ const uiModule = (() => {
   const appendTasks = () => {
     clearContainer();
     const template = document.querySelector("[data-id='todo-template']");
-    const filteredArray = formModule.toDoArray.filter(todo => todo.project === currentProject);
+    const filteredArray = testArray.filter(todo => todo.project === currentProject);
     filteredArray.forEach(todo => {
       const clone = template.content.cloneNode(true);
       appendDetails(todo, clone);

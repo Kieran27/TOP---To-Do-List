@@ -1,8 +1,9 @@
 import './styles.css';
 
 // JS Module Imports
-import uiModule from './UI-Module.js'
-import formModule from './Form-Module.js'
+import uiModule from './UI-Module.js';
+import formModule from './Form-Module.js';
+import Storage from './Storage-Class.js';
 import {
   projectsList,
   createNewProjectBtn,
@@ -12,7 +13,8 @@ import {
   newProjectForm,
   newTaskForm,
   currentProject,
-  newProjectClose
+  newProjectClose,
+  testArray
 } from './Base-Variables.js'
 
 // Static Event Listeners;
@@ -23,3 +25,6 @@ createNewTaskBtn.addEventListener('click', uiModule.toggleNewTaskModal);
 
 newProjectForm.addEventListener('submit', formModule.newProjectSubmit);
 newTaskForm.addEventListener('submit', formModule.newTaskSubmit);
+
+Storage.getTasks()
+Storage.copyTasks()
