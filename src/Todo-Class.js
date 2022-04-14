@@ -12,4 +12,24 @@ export default class Todo {
     this.status === false ? this.status = true : this.status = false;
   }
 
+  set newTitle(updatedTitle) {
+    this.title = updatedTitle;
+  }
+
+  set newDescription(updatedDescription) {
+    this.description = updatedDescription
+  }
+
+  set newDate(updatedDate) {
+    this.date = updatedDate;
+  }
+
+  set newProject(updatedProject) {
+    this.project = updatedProject;
+  }
+
+  set newUrgency(updatedUrgency) {
+    this.urgency = updatedUrgency;
+  }
+
 }

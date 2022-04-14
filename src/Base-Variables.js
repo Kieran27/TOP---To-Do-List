@@ -12,6 +12,7 @@ const newTaskForm = document.getElementById('create-new-task');
 
 let currentProject = null;
 let objectIndex = 0;
+let testArray = [];
 
 
 export {
@@ -26,5 +27,6 @@ export {
   expandedModal,
   newProjectClose,
   editModal,
-  objectIndex
+  objectIndex,
+  testArray
 };
