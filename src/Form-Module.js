@@ -1,7 +1,6 @@
 import uiModule from './UI-Module.js';
 import Todo from './Todo-Class';
-import Storage from './Storage-Class.js'
-import {currentProject, objectIndex, testArray} from './Base-Variables.js'
+import {currentProject, objectIndex} from './Base-Variables.js'
 import editModule from './Edit-Module.js'
 
 const formModule = (() => {
@@ -12,30 +11,15 @@ const formModule = (() => {
   const editedDate = document.getElementById('task-edit-date');
 
   let toDoArray = [];
-  let projectsArray = [];
 
   const newProjectSubmit = (e) => {
     const newProjectName = document.getElementById('new-project-name');
     e.preventDefault();
-    projectsArray.push(newProjectName.value);
-    Storage.saveProjects();
-    console.log(projectsArray);
-
     createNewOption(newProjectName);
     createNewEditOption(newProjectName);
     uiModule.toggleNewProjectModal();
     uiModule.createNewProject(newProjectName);
     uiModule.clearNewProjectInput(newProjectName);
-
-  }
-
-  const checkForProjectName = (status, title) => {
-    document.querySelectorAll('.btn-project').forEach(btn => {
-      if (btn.textContent.toLowerCase() === title.value.toLowerCase()) {
-        return alert("Projects cannot share the same Name");
-      }
-    })
-    return alert("Hello")
   }
 
   const newTaskSubmit = (e) => {
@@ -51,10 +35,7 @@ const formModule = (() => {
 
     // Instantiate New Todo Item
   const newTodo = new Todo(taskName.value, taskDescription.value, taskDate.value, taskProject.value, taskUrgency.value);
-    testArray.push(newTodo);
-    Storage.saveTasks();
-    Storage.getTasks();
-    console.log(testArray)
+    toDoArray.push(newTodo);
 
     uiModule.toggleNewTaskModal();
     uiModule.clearNewTaskInputs(taskName, taskDescription, taskDate);
@@ -62,17 +43,6 @@ const formModule = (() => {
     uiModule.removeActiveProject();
     uiModule.setActiveProject();
   }
-
-
-    const checkForTaskName = (newTaskName) => {
-      testArray.forEach(todo => {
-        if (todo.title.toLowerCase() === newTaskName.toLowerCase()) {
-          alert("Tasks Cannot Share the Same Name!")
-        } else {
-          appendTasks();
-        }
-      })
-    }
 
   const createNewOption = (projectName) => {
     const newOption = new Option(projectName.value)
@@ -84,16 +54,30 @@ const formModule = (() => {
     document.querySelector('#edit-project').add(newOption, undefined);
   }
 
+  const checkForTaskName = (newTaskName) => {
+  toDoArray.forEach(todo => {
+    if (todo.title.toLowerCase() === newTaskName.toLowerCase()) {
+      alert("Tasks Cannot Share the Same Name!")
+    } else {
+      appendTasks();
+    }
+  })
+}
+
+  const checkForEqualName = (newProjectName) => {
+    console.log('hello nimious!')
+  }
+
   const editTaskSubmit = (e) => {
     e.preventDefault();
     const editedUrgency = document.querySelector("input[name='Edit-Urgency']:checked");
     const editedProject = document.getElementById('edit-project');
 
-    testArray[objectIndex].newTitle = editedName.value
-    testArray[objectIndex].newDate = editedDate.value;
-    testArray[objectIndex].newDescription = editedDescription.value;
-    testArray[objectIndex].newUrgency = editedUrgency.value;
-    testArray[objectIndex].newProject = editedProject.value;
+    toDoArray[objectIndex].newTitle = editedName.value
+    toDoArray[objectIndex].newDate = editedDate.value;
+    toDoArray[objectIndex].newDescription = editedDescription.value;
+    toDoArray[objectIndex].newUrgency = editedUrgency.value;
+    toDoArray[objectIndex].newProject = editedProject.value;
 
     uiModule.toggleEditModal();
     uiModule.appendTasks();
@@ -110,7 +94,11 @@ const formModule = (() => {
     })
   }
 
-return { toDoArray, projectsArray, newProjectSubmit, newTaskSubmit, createNewOption, checkForProjectName, checkForTaskName, editTaskSubmit, appendEditDetails }
+
+
+
+
+  return { toDoArray, newProjectSubmit, newTaskSubmit, createNewOption, editTaskSubmit, appendEditDetails }
 })();
 
 export default formModule;

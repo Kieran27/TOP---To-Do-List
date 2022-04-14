@@ -25,6 +25,3 @@ createNewTaskBtn.addEventListener('click', uiModule.toggleNewTaskModal);
 
 newProjectForm.addEventListener('submit', formModule.newProjectSubmit);
 newTaskForm.addEventListener('submit', formModule.newTaskSubmit);
-
-Storage.getTasks()
-Storage.copyTasks()

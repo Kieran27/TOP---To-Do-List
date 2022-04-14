@@ -1,7 +1,7 @@
 import uiModule from './UI-Module.js'
 import formModule from './Form-Module.js'
 import Todo from './Todo-Class.js'
-import {objectIndex, testArray} from './Base-Variables.js'
+import {objectIndex} from './Base-Variables.js'
 
 const editModule = (() => {
 
@@ -26,9 +26,9 @@ const editModule = (() => {
   }
 
   const changeObjectInstance = (title) => {
-    testArray.forEach((obj, index) => {
+    formModule.toDoArray.forEach((obj, index) => {
       if (obj.title === title) {
-        const object = testArray[index];
+        const object = formModule.toDoArray[index];
         object.changeStatus();
         uiModule.appendTasks();
       }
@@ -36,10 +36,10 @@ const editModule = (() => {
   }
 
   const deleteTodo = (title) => {
-    testArray.forEach((obj, index) => {
+    formModule.toDoArray.forEach((obj, index) => {
       if (obj.title === title) {
-        const object = testArray[index];
-        testArray.splice(index, 1);
+        const object = formModule.toDoArray[index];
+        formModule.toDoArray.splice(index, 1);
         uiModule.appendTasks();
       }
     })
@@ -53,7 +53,7 @@ const editModule = (() => {
 
   const appendExpandedDetails = (title) => {
 
-    testArray.forEach((obj, index) => {
+    formModule.toDoArray.forEach((obj, index) => {
       if (obj.title === title) {
         expandedTitle.textContent = obj.title;
         objectTitle = expandedTitle.textContent;
@@ -90,7 +90,7 @@ const editModule = (() => {
     const taskDetails = currentTarget.parentElement.parentElement.parentElement;
     let taskTitle = document.querySelector('[data-id=expanded-modal-title]').textContent;
     taskTitle = objectTitle;
-    testArray.forEach((todo, index) => {
+    formModule.toDoArray.forEach((todo, index) => {
       if (todo.title === taskTitle) {
         objectIndex = index;
       }
