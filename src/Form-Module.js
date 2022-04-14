@@ -94,10 +94,6 @@ const formModule = (() => {
     })
   }
 
-
-
-
-
   return { toDoArray, newProjectSubmit, newTaskSubmit, createNewOption, editTaskSubmit, appendEditDetails }
 })();
 
