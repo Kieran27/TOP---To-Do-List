@@ -1,7 +1,8 @@
 import uiModule from './UI-Module.js'
 import formModule from './Form-Module.js'
 import Todo from './Todo-Class.js'
-import {objectIndex} from './Base-Variables.js'
+import Storage from './Storage-Class.js'
+import {objectIndex, toDoArray} from './Base-Variables.js'
 
 const editModule = (() => {
 
@@ -26,20 +27,23 @@ const editModule = (() => {
   }
 
   const changeObjectInstance = (title) => {
-    formModule.toDoArray.forEach((obj, index) => {
+    toDoArray.forEach((obj, index) => {
       if (obj.title === title) {
-        const object = formModule.toDoArray[index];
-        object.changeStatus();
+        const object = toDoArray[index];
+        console.log(object)
+        object.changeStatus()
+        Storage.saveTasks();
         uiModule.appendTasks();
       }
     })
   }
 
   const deleteTodo = (title) => {
-    formModule.toDoArray.forEach((obj, index) => {
+    toDoArray.forEach((obj, index) => {
       if (obj.title === title) {
-        const object = formModule.toDoArray[index];
-        formModule.toDoArray.splice(index, 1);
+        const object = toDoArray[index];
+        toDoArray.splice(index, 1);
+        Storage.saveTasks();
         uiModule.appendTasks();
       }
     })
@@ -53,7 +57,7 @@ const editModule = (() => {
 
   const appendExpandedDetails = (title) => {
 
-    formModule.toDoArray.forEach((obj, index) => {
+    toDoArray.forEach((obj, index) => {
       if (obj.title === title) {
         expandedTitle.textContent = obj.title;
         objectTitle = expandedTitle.textContent;
@@ -90,7 +94,7 @@ const editModule = (() => {
     const taskDetails = currentTarget.parentElement.parentElement.parentElement;
     let taskTitle = document.querySelector('[data-id=expanded-modal-title]').textContent;
     taskTitle = objectTitle;
-    formModule.toDoArray.forEach((todo, index) => {
+    toDoArray.forEach((todo, index) => {
       if (todo.title === taskTitle) {
         objectIndex = index;
       }
@@ -110,7 +114,7 @@ const editModule = (() => {
     document.getElementById('edit-task').addEventListener('submit', formModule.editTaskSubmit);
   }
 
-  return {decidePath, editExpandedTodo, expandedTitle, expandedDate, expandedNotes, expandedUrgency}
+  return {decidePath, editExpandedTodo, expandedTitle, expandedDate, expandedNotes, expandedUrgency, changeObjectInstance}
 })();
 
 export default editModule;

@@ -7,7 +7,8 @@ import {
   currentProject,
   expandedModal,
   editModal,
-  objectIndex
+  objectIndex,
+  toDoArray
 }
  from './Base-Variables.js'
 
@@ -54,6 +55,20 @@ const uiModule = (() => {
     projectsList.appendChild(listItem);
   }
 
+  const appendProjects = (projectsArray) => {
+    projectsArray.forEach(project => {
+      const listItem = document.createElement('li');
+      const projectBtn = document.createElement('button');
+      projectBtn.classList.add('btn-project');
+      projectBtn.textContent = project;
+      projectBtn.onclick = changeProjects;
+
+      listItem.appendChild(projectBtn);
+
+      projectsList.appendChild(listItem);
+    })
+  }
+
   const changeProjects = (e) => {
     currentProject = e.currentTarget.textContent;
     removeActiveProject();
@@ -65,7 +80,7 @@ const uiModule = (() => {
   const appendTasks = () => {
     clearContainer();
     const template = document.querySelector("[data-id='todo-template']");
-    const filteredArray = formModule.toDoArray.filter(todo => todo.project === currentProject);
+    const filteredArray = toDoArray.filter(todo => todo.project === currentProject);
     filteredArray.forEach(todo => {
       const clone = template.content.cloneNode(true);
       appendDetails(todo, clone);
@@ -127,6 +142,7 @@ const uiModule = (() => {
     clearNewProjectInput,
     clearNewTaskInputs,
     createNewProject,
+    appendProjects,
     appendTasks,
     removeActiveProject,
     setActiveProject,

@@ -9,19 +9,29 @@ import {
   createNewProjectBtn,
   createNewTaskBtn,
   newTaskModal,
+  newTaskClose,
   newProjectModal,
   newProjectForm,
   newTaskForm,
+  editTaskClose,
   currentProject,
   newProjectClose,
-  testArray
+  toDoArray,
+  clearStorageBtn
 } from './Base-Variables.js'
 
 // Static Event Listeners;
 
 createNewProjectBtn.addEventListener('click', uiModule.toggleNewProjectModal);
 newProjectClose.addEventListener('click', uiModule.toggleNewProjectModal);
+newTaskClose.addEventListener('click', uiModule.toggleNewTaskModal);
+editTaskClose.addEventListener('click', uiModule.toggleEditModal);
 createNewTaskBtn.addEventListener('click', uiModule.toggleNewTaskModal);
+clearStorageBtn.addEventListener('click', Storage.clearStorage);
 
 newProjectForm.addEventListener('submit', formModule.newProjectSubmit);
 newTaskForm.addEventListener('submit', formModule.newTaskSubmit);
+
+
+Storage.getProjects();
+Storage.getTasks();

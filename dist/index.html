@@ -15,8 +15,11 @@
 <body>
   <div class="wrapper">
     <div class="wrapper-tertiary">
-      <header>
+      <header class='header'>
         <h1>Todo List</h1>
+        <button data-id='btn-clear-local-storage' class="btn-clear-storage">
+          Clear Todo List
+        </button>
       </header>
       <main>
         <aside>
@@ -56,10 +59,10 @@
           </article>
         </template>
         <section data-id='task-creation-container' class="task-creation-container">
+          <button data-id='btn-task-close' class='btn-task-close'>&times;</button>
           <form id="create-new-task">
             <div class="task-creation-header">
               <h2>New Task...</h2>
-              <button data-id='btn-task-close' class='btn-task-close'>&times;</button>
             </div>
             <label for="Task-Name">Task Name</label>
             <input id='task-title' type="text" placeholder="Hit The Gym">
@@ -114,10 +117,10 @@
     </footer>
   </div>
   <section class="new-project-form-container" data-id='new-project-form-container'>
+    <button data-id='btn-project-close' class='btn-project-close'>&times;</button>
     <form id="new-project-form">
       <div class="new-project-form-header">
         <h2>New Project</h2>
-        <button data-id='btn-project-close' class='btn-project-close'>&times;</button>
       </div>
       <div><label for="Project-Name">Project Name</label></div>
       <input id='new-project-name' type="text" name="Project-Name" required>
@@ -125,10 +128,10 @@
     </form>
   </section>
   <section data-id='task-edit-container' class="task-creation-container">
+     <button data-id='btn-task-edit-close' class='btn-task-close'>&times;</button>
     <form id="edit-task">
       <div class="task-creation-header">
         <h2>Edit Task...</h2>
-        <button data-id='btn-task-close' class='btn-task-close'>&times;</button>
       </div>
       <label for="task-edit-title">Task Name</label>
       <input id='task-edit-title' type="text" placeholder="Hit The Gym">

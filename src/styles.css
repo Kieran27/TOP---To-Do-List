@@ -73,6 +73,20 @@ input, select, textarea {
   margin-top: 0.2rem;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-clear-storage {
+  background: var(--Clr-Red);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--Btn-Radius);
+  cursor: pointer;
+}
+
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -241,7 +255,13 @@ cursor: pointer;
 }
 
 .btn-task-close {
-  font-size: 2.5rem;
+  display: flex;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  justify-content: flex-end;
+  color: var(--Clr-White);
+  font-size: 3.5rem;
   font-weight: bold;
   cursor: pointer;
 }
@@ -281,7 +301,13 @@ cursor: pointer;
 }
 
 .btn-project-close {
-  font-size: 2.5rem;
+  display: flex;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  justify-content: flex-end;
+  color: var(--Clr-White);
+  font-size: 3.5rem;
   font-weight: bold;
   cursor: pointer;
 }

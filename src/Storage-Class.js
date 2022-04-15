@@ -1,10 +1,12 @@
 import formModule from './Form-Module.js'
-import {testArray} from './Base-Variables.js'
+import uiModule from './UI-Module.js'
+import {toDoArray, projectsArray} from './Base-Variables.js'
+import Todo from './Todo-Class.js'
 
 export default class Storage {
 
   static saveTasks() {
-    localStorage.setItem('toDoArray', JSON.stringify(testArray))
+    localStorage.setItem('toDoArray', JSON.stringify(toDoArray))
   }
 
   static getTasks() {
@@ -13,26 +15,32 @@ export default class Storage {
     if (!parsedTasksArray) {
       console.log("Huge W")
     } else  {
-      testArray = [...parsedTasksArray];
+      formModule.instantiateLocalStorage(parsedTasksArray);
     }
   }
 
-  static copyTasks() {
-    console.log(testArray)
-  }
-
   static saveProjects() {
-    localStorage.setItem('projectsArray', JSON.stringify(formModule.projectsArray));
+    localStorage.setItem('projectsArray', JSON.stringify(projectsArray));
   }
 
   static getProjects() {
     const myProjectsArray = localStorage.getItem('projectsArray');
     let parsedProjectsArray = JSON.parse(myProjectsArray);
-    parsedProjectsArray = formModule.projectsArray;
-    // console.log(formModule.projectsArray)
+    if (!parsedProjectsArray) {
+      console.log("Ouroboros");
+    } else {
+      projectsArray = [...parsedProjectsArray];
+      uiModule.appendProjects(projectsArray);
+      formModule.addOptions(projectsArray);
+      formModule.addEditOptions(projectsArray);
+      console.log(projectsArray);
+    }
   }
 
-  static createProjectButtons() {
-    console.log('Button Created!')
+  static clearStorage() {
+    localStorage.clear();
+    location.reload();
   }
+
+
 }
