@@ -33,6 +33,12 @@ const uiModule = (() => {
     return editModal.classList.toggle('toggle-display');
   }
 
+  const toggleMobileNav = () => {
+    const mobileNav = document.querySelector('.mobile-pullout-nav');
+    mobileNav.classList.toggle('toggle-nav');
+    mobileNav.classList.toggle('box-shadow');
+  }
+
   const clearNewProjectInput = (inputName) => {
     inputName.value = "";
   }
@@ -41,6 +47,13 @@ const uiModule = (() => {
     a.value = "";
     b.value = "";
     c.value = "";
+  }
+
+  const checkIfMobile = () => {
+    const mobileNav = document.querySelector("[data-id='mobile-nav-container']");
+    if (mobileNav.classList.contains('toggle-nav')) {
+      toggleMobileNav();
+    }
   }
 
   const createNewProject = (v) => {
@@ -53,6 +66,18 @@ const uiModule = (() => {
     listItem.appendChild(projectBtn);
 
     projectsList.appendChild(listItem);
+  }
+
+  const createNewProjectMobile = (v) => {
+    const listItem = document.createElement('li');
+    const projectBtn = document.createElement('button');
+    projectBtn.classList.add('btn-mobile-project');
+    projectBtn.textContent = v.value;
+    projectBtn.onclick = changeProjects;
+
+    listItem.appendChild(projectBtn);
+
+    document.querySelector("[data-id='mobile-nav-list']").appendChild(listItem);
   }
 
   const appendProjects = (projectsArray) => {
@@ -69,19 +94,53 @@ const uiModule = (() => {
     })
   }
 
+  const appendProjectsMobile = (projectsArray) => {
+    projectsArray.forEach(project => {
+      const listItem = document.createElement('li');
+      const projectBtn = document.createElement('button');
+      projectBtn.classList.add('btn-mobile-project');
+      projectBtn.textContent = project;
+      projectBtn.onclick = changeProjects;
+
+      listItem.appendChild(projectBtn);
+
+      document.querySelector("[data-id='mobile-nav-list']").appendChild(listItem);
+    })
+  }
+
   const changeProjects = (e) => {
     currentProject = e.currentTarget.textContent;
+    console.log(currentProject);
     removeActiveProject();
     setActiveProject();
+    checkIfMobile();
     changeOutputTitle(currentProject)
     appendTasks();
   }
 
   const appendTasks = () => {
     clearContainer();
+    if (currentProject === 'Home') {
+      appendHomeTasks();
+    } else {
+      appendFilteredTasks();
+    }
+  }
+
+  const appendFilteredTasks = () => {
     const template = document.querySelector("[data-id='todo-template']");
     const filteredArray = toDoArray.filter(todo => todo.project === currentProject);
     filteredArray.forEach(todo => {
+      const clone = template.content.cloneNode(true);
+      appendDetails(todo, clone);
+      addEventListeners(clone);
+      document.getElementById('todo-container').appendChild(clone);
+    })
+  }
+
+  const appendHomeTasks = () => {
+    const template = document.querySelector("[data-id='todo-template']");
+    toDoArray.forEach(todo => {
       const clone = template.content.cloneNode(true);
       appendDetails(todo, clone);
       addEventListeners(clone);
@@ -139,13 +198,18 @@ const uiModule = (() => {
     toggleNewTaskModal,
     toggleExpandedModal,
     toggleEditModal,
+    toggleMobileNav,
+    checkIfMobile,
     clearNewProjectInput,
     clearNewTaskInputs,
     createNewProject,
+    createNewProjectMobile,
     appendProjects,
+    appendProjectsMobile,
     appendTasks,
     removeActiveProject,
     setActiveProject,
+    changeOutputTitle
   }
 })();
 

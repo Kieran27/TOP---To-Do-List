@@ -16,6 +16,11 @@
   <div class="wrapper">
     <div class="wrapper-tertiary">
       <header class='header'>
+        <button data-id='btn-hamburger' class='btn-hamburger'>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </button>
         <h1>Todo List</h1>
         <button data-id='btn-clear-local-storage' class="btn-clear-storage">
           Clear Todo List
@@ -32,8 +37,21 @@
             </button>
           </nav>
         </aside>
+        <div data-id="mobile-nav-container" class="mobile-pullout-nav">
+          <button data-id="btn-mobile-nav-close" class="btn-mobile-nav-close">&times</button>
+          <nav class="mobile-nav">
+            <h2 class='mobile-nav-title'>Projects</h2>
+            <ul data-id='mobile-nav-list'>
+            </ul>
+            <div class="mobile-nav-create-container">
+             <button data-id='btn-mobile-nav-create' class='btn-mobile-nav-create'>+ Create New Project</button>
+            </div>
+          </nav>
+        </div>
         <div class="todo-container">
-          <h2 data-id='current-project-title' class='todo-container-title'>Current Project</h2>
+          <div class="todo-container-header-container">
+            <h2 data-id='current-project-title' class='todo-container-title'>Current Project</h2>
+          </div>
           <div id="todo-container">
           </div>
         </div>

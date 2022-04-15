@@ -5,7 +5,11 @@ export default class Todo {
     this.date = date;
     this.project = project;
     this.urgency = urgency;
-    this.status = false;
+    if (!status) {
+      this.status = false;
+    } else {
+      this.status = true;
+    }
   }
 
   changeStatus() {

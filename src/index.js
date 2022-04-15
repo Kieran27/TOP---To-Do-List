@@ -17,7 +17,10 @@ import {
   currentProject,
   newProjectClose,
   toDoArray,
-  clearStorageBtn
+  clearStorageBtn,
+  hamburgerMenu,
+  mobileNavClose,
+  mobileNavCreateProject
 } from './Base-Variables.js'
 
 // Static Event Listeners;
@@ -27,11 +30,17 @@ newProjectClose.addEventListener('click', uiModule.toggleNewProjectModal);
 newTaskClose.addEventListener('click', uiModule.toggleNewTaskModal);
 editTaskClose.addEventListener('click', uiModule.toggleEditModal);
 createNewTaskBtn.addEventListener('click', uiModule.toggleNewTaskModal);
+hamburgerMenu.addEventListener('click', uiModule.toggleMobileNav);
+mobileNavClose.addEventListener('click', uiModule.toggleMobileNav);
+mobileNavCreateProject.addEventListener('click', uiModule.toggleNewProjectModal);
+
 clearStorageBtn.addEventListener('click', Storage.clearStorage);
 
 newProjectForm.addEventListener('submit', formModule.newProjectSubmit);
 newTaskForm.addEventListener('submit', formModule.newTaskSubmit);
 
-
+// Local Storage - Get Projects and Tasks and display them to user
 Storage.getProjects();
 Storage.getTasks();
+Storage.getCurrentProject();
+uiModule.appendTasks();

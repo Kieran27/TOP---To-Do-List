@@ -41,7 +41,7 @@ main {
 aside {
 background: var(--Clr-VeryLightGrey);
 width: 300px;
-min-height: 80vh;
+min-height: 87.5vh;
 padding: 1rem;
 }
 
@@ -79,6 +79,10 @@ input, select, textarea {
   align-items: center;
 }
 
+.btn-hamburger {
+  display: none;
+}
+
 .btn-clear-storage {
   background: var(--Clr-Red);
   color: white;
@@ -98,6 +102,73 @@ input, select, textarea {
   width: 80vw;
   height: 100%;
   padding: 2rem;
+}
+
+.todo-container-header-container {
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+#todo-container {
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.mobile-pullout-nav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.mobile-nav-title {
+  text-align: center;
+}
+
+.mobile-nav {
+  padding: 1rem;
+}
+
+.btn-mobile-nav-close {
+  display: flex;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  justify-content: flex-end;
+  color: #111;
+  font-size: 3.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-mobile-project {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  border-radius: var(--Btn-Radius);
+}
+
+.btn-mobile-project:hover {
+  background: var(--Clr-Violet);
+}
+
+.mobile-nav-create-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-mobile-nav-create {
+  background: var(--Clr-Orange);
+  border-radius: var(--Btn-Radius);
+  padding: 0.75rem 1.2rem;;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .create-form-button {
@@ -223,7 +294,7 @@ cursor: pointer;
 
 .task-creation-container {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.50);
   top: 0;
   right: 0;
   bottom: 0;
@@ -269,7 +340,7 @@ cursor: pointer;
 .new-project-form-container {
  position: fixed;
  display: none;
- background-color: rgba(0, 0, 0, 0.25);
+ background-color: rgba(0, 0, 0, 0.50);
  top: 0;
  right: 0;
  bottom: 0;
@@ -329,7 +400,7 @@ cursor: pointer;
 
 .expanded-modal-container {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.50);
   top: 0;
   right: 0;
   bottom: 0;
@@ -392,4 +463,37 @@ cursor: pointer;
 
 .toggle-display {
   display: block;
+}
+
+.toggle-nav {
+  width: 25rem;
+}
+
+.box-shadow {
+  box-shadow: 0 0 0 10000px rgba(0,0,0,0.75);
+}
+
+.line {
+width: 30px;
+height: 5px;
+background-color: var(--Clr-White);
+margin: 6px 0;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 600px) {
+  aside {
+    display: none
+  }
+  main {
+    justify-content: center;
+  }
+  .todo-container {
+    padding: 2rem 0;
+  }
+  .btn-hamburger {
+    display: block;
+    cursor: pointer;
+  }
 }

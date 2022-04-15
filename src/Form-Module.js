@@ -14,8 +14,8 @@ const formModule = (() => {
   const newProjectSubmit = (e) => {
     const newProjectName = document.getElementById('new-project-name');
     e.preventDefault();
-    checkForProjectName(newProjectName)
 
+    checkForProjectName(newProjectName)
     projectsArray.push(newProjectName.value);
     Storage.saveProjects();
 
@@ -24,6 +24,8 @@ const formModule = (() => {
 
     uiModule.toggleNewProjectModal();
     uiModule.createNewProject(newProjectName);
+    uiModule.checkIfMobile();
+    uiModule.createNewProjectMobile(newProjectName);
     uiModule.clearNewProjectInput(newProjectName);
   }
 
@@ -49,6 +51,7 @@ const formModule = (() => {
     uiModule.toggleNewTaskModal();
     uiModule.clearNewTaskInputs(taskName, taskDescription, taskDate);
     uiModule.appendTasks();
+    uiModule.changeOutputTitle(currentProject);
     uiModule.removeActiveProject();
     uiModule.setActiveProject();
   }
@@ -77,10 +80,11 @@ const formModule = (() => {
     })
   }
 
-  const checkForProjectName = (newProjectName) => {
+  const checkForProjectName = (name) => {
+  const projectName = name;
   projectsArray.forEach(project => {
-    if (project.toLowerCase() === newProjectName.value.toLowerCase()) {
-      alert("Tasks Cannot Share the Same Name!")
+    if (project.toLowerCase() === projectName.value.toLowerCase()) {
+      alert("Tasks Cannot Share the Same Name!");
     } else {
       return true;
     }

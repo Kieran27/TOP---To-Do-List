@@ -1,6 +1,6 @@
 import formModule from './Form-Module.js'
 import uiModule from './UI-Module.js'
-import {toDoArray, projectsArray} from './Base-Variables.js'
+import {currentProject, toDoArray, projectsArray} from './Base-Variables.js'
 import Todo from './Todo-Class.js'
 
 export default class Storage {
@@ -31,6 +31,7 @@ export default class Storage {
     } else {
       projectsArray = [...parsedProjectsArray];
       uiModule.appendProjects(projectsArray);
+      uiModule.appendProjectsMobile(projectsArray);
       formModule.addOptions(projectsArray);
       formModule.addEditOptions(projectsArray);
       console.log(projectsArray);
@@ -40,6 +41,14 @@ export default class Storage {
   static clearStorage() {
     localStorage.clear();
     location.reload();
+  }
+
+  static saveCurrentProject() {
+    localStorage.setItem('currentProject', JSON.stringify(currentProject))
+  }
+
+  static getCurrentProject() {
+    currentProject = JSON.parse(localStorage.getItem('currentProject'));
   }
 
 

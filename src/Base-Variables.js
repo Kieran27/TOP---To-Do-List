@@ -11,6 +11,9 @@ const editTaskClose = document.querySelector('[data-id="btn-task-edit-close"]');
 const newProjectForm = document.getElementById('new-project-form');
 const newTaskForm = document.getElementById('create-new-task');
 const clearStorageBtn =  document.querySelector("[data-id='btn-clear-local-storage']");
+const hamburgerMenu = document.querySelector("[data-id='btn-hamburger']");
+const mobileNavClose = document.querySelector("[data-id='btn-mobile-nav-close']");
+const mobileNavCreateProject = document.querySelector("[data-id='btn-mobile-nav-create']");
 
 // Global variables - needed for Array manipulation
 
@@ -37,5 +40,8 @@ export {
   objectIndex,
   toDoArray,
   projectsArray,
-  clearStorageBtn
+  clearStorageBtn,
+  hamburgerMenu,
+  mobileNavClose,
+  mobileNavCreateProject 
 };
