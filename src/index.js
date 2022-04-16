@@ -4,6 +4,7 @@ import './styles.css';
 import uiModule from './UI-Module.js';
 import formModule from './Form-Module.js';
 import Storage from './Storage-Class.js';
+import FirstLoad from './First-Load.js';
 import {
   projectsList,
   createNewProjectBtn,
@@ -40,7 +41,10 @@ newProjectForm.addEventListener('submit', formModule.newProjectSubmit);
 newTaskForm.addEventListener('submit', formModule.newTaskSubmit);
 
 // Local Storage - Get Projects and Tasks and display them to user
+
 Storage.getProjects();
 Storage.getTasks();
-Storage.getCurrentProject();
-uiModule.appendTasks();
+
+FirstLoad.createHomeProject();
+FirstLoad.createHomeProjectMobile();
+FirstLoad.setCurrentProject();

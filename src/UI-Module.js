@@ -110,7 +110,15 @@ const uiModule = (() => {
 
   const changeProjects = (e) => {
     currentProject = e.currentTarget.textContent;
-    console.log(currentProject);
+    removeActiveProject();
+    setActiveProject();
+    checkIfMobile();
+    changeOutputTitle(currentProject)
+    appendTasks();
+  }
+
+  const changeProjectsFirstLoad = () => {
+    currentProject = 'Home';
     removeActiveProject();
     setActiveProject();
     checkIfMobile();
@@ -156,7 +164,9 @@ const uiModule = (() => {
     const todoTitle = clone.querySelector("[data-id='todo-title']");
     const todoDate = clone.querySelector("[data-id='todo-date']");
     const toDoCheckBtn = clone.querySelector(".circle")
+    const status = clone.querySelector("[data-id='todo-status']");
     checkMarkStyling(todo, toDoCheckBtn)
+    urgencyStyling(todo, status);
     todoTitle.textContent = todo.title;
     todoDate.textContent = todo.date;
   }
@@ -165,6 +175,25 @@ const uiModule = (() => {
     if (todo.status === true) {
       btn.classList.add('circle-checked');
       btn.innerText = '✓';
+    }
+  }
+
+  const urgencyStyling = (todo, status) => {
+    switch(todo.urgency) {
+      case 'urgent':
+        status.style.background = 'red';
+        break;
+      case 'high-priority':
+        status.style.background = 'orange';
+        break;
+      case 'medium-priority':
+        status.style.background = 'var(--Clr-Blue)';
+        break;
+      case 'low-priority':
+        status.style.background = 'green';
+        break;
+      default:
+      console.log("How Did That Happen?")
     }
   }
 
@@ -206,6 +235,8 @@ const uiModule = (() => {
     createNewProjectMobile,
     appendProjects,
     appendProjectsMobile,
+    changeProjects,
+    changeProjectsFirstLoad,
     appendTasks,
     removeActiveProject,
     setActiveProject,
