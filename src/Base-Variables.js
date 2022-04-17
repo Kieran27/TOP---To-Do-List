@@ -43,5 +43,5 @@ export {
   clearStorageBtn,
   hamburgerMenu,
   mobileNavClose,
-  mobileNavCreateProject 
+  mobileNavCreateProject
 };
