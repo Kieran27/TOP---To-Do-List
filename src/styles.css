@@ -3,7 +3,7 @@
 }
 
 :root {
-  --Clr-Orange: #EE8434;
+  --Clr-Orange: rgba(238, 133, 52, 0.9);
   --Clr-Blue: #496DDB;
   --Clr-Violet: #717EC3;
   --Clr-Red: #C95D63;
@@ -12,6 +12,9 @@
   --Clr-White: #fff;
   --Clr-LightGrey: hsl(223, 19%, 93%);
   --Clr-VeryLightGrey: hsl(228, 33%, 97%);
+
+  --Clr-Red-Hover: rgba(201, 93, 99, 0.75);
+  --Clr-Violet-Hover: rgba(113, 126, 195, 0.75);
 
   --Primary-Font: 'Roboto', sans-serif;
 
@@ -34,14 +37,17 @@ h2 {
 
 main {
   display: flex;
-  justify-content: space-between;
   position: relative;
+}
+
+button {
+  font-family: var(--Primary-Font);
 }
 
 aside {
 background: var(--Clr-VeryLightGrey);
-width: 300px;
-min-height: 87.5vh;
+width: 500px;
+height: 89.5vh;
 padding: 1rem;
 }
 
@@ -53,6 +59,10 @@ footer {
 
 h1, h2, h3 {
   margin: 0;
+}
+
+h1 {
+  font-size: 1.75rem;
 }
 
 ul {
@@ -79,8 +89,14 @@ input, select, textarea {
   align-items: center;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
 .btn-hamburger {
   display: none;
+  padding-right: 2rem;
 }
 
 .btn-clear-storage {
@@ -91,11 +107,20 @@ input, select, textarea {
   cursor: pointer;
 }
 
+.btn-clear-storage:hover {
+  background: var(--Clr-Red-Hover);
+}
+
 .wrapper {
   min-height: 100vh;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+}
+
+.project-nav-header {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid hsl(223, 19%, 80%);
 }
 
 .todo-container {
@@ -106,12 +131,12 @@ input, select, textarea {
 
 .todo-container-header-container {
   margin: 0 auto;
-  max-width: 1100px;
+  max-width: 1300px;
 }
 
 #todo-container {
   margin: 0 auto;
-  max-width: 1100px;
+  max-width: 1300px;
 }
 
 .mobile-pullout-nav {
@@ -197,7 +222,9 @@ cursor: pointer;
 
 .btn-project {
   background: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  letter-spacing: 1.3px;
+  font-weight: bold;
   padding: 0.5rem;
   width: 100%;
   margin-bottom: 0.5rem;
@@ -213,8 +240,20 @@ cursor: pointer;
   background: var(--Clr-LightGrey);
 }
 
+.btn-create-new-project-container {
+  float: right;
+}
+
+.create {
+  padding-right: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .btn-create-new-project {
   background: var(--Clr-Orange);
+  color: var(--Clr-White);
+  font-size: 1rem;
   border-radius: var(--Btn-Radius);
   padding: 0.75rem 1.2rem;;
   transition: 0.3s;
@@ -259,11 +298,20 @@ cursor: pointer;
    height: 25px;
    width: 25px;
    border: 2px solid var(--Clr-LightGrey);
+   transition: 0.2s ease;
    cursor: pointer;
+}
+
+.circle:hover {
+  border: 2.5px solid hsl(223, 19%, 80%);
 }
 
 .circle-checked {
   background: rgb(182, 245, 66)
+}
+
+.todo-title {
+  font-weight: bold;
 }
 
 .todo-left {
@@ -285,19 +333,38 @@ cursor: pointer;
   align-items: center;
 }
 
-.todo-right-urgency-container button {
-  width: 35px;
+.btn-todo-delete {
+  background: var(--Clr-Red);
+  border-radius: var(--Btn-Radius);
+  padding: 0.25rem 1rem;
+  margin-right: 1.5rem;
+  color: var(--Clr-White);
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
-.todo-right-expand-container button {
-  width: 35px;
+.btn-todo-expand {
+  background: var(--Clr-Violet);
+  border-radius: var(--Btn-Radius);
+  padding: 0.25rem 1rem;
+  color: var(--Clr-White);
+  transition: 0.3s ease;
   cursor: pointer;
+}
+
+.btn-todo-delete:hover {
+  background: var(--Clr-Red-Hover);
+}
+
+.btn-todo-expand:hover {
+  background: var(--Clr-Violet-Hover);
 }
 
 .todo > button {
   cursor: pointer;
 }
+
+
 
 /* Form Styling */
 
@@ -461,12 +528,30 @@ cursor: pointer;
 }
 
 .expanded-modal-footer button {
-  background: var(--Clr-LightGrey);
   font-size: 1.3rem;
   padding: 0.5rem 1rem;
+  color: var(--Clr-White);
   border-radius: var(--Btn-Radius);
+  transition: 0.3s ease;
   cursor: pointer;
 }
+
+.btn-expanded-edit {
+  background: var(--Clr-Violet);
+}
+
+.btn-expanded-dlt {
+  background: var(--Clr-Red)
+}
+
+.btn-expanded-edit:hover {
+  background: var(--Clr-Violet-Hover);
+}
+
+.btn-expanded-dlt:hover {
+  background: var(--Clr-Red-Hover);
+}
+
 
 /* Utility Classes */
 
@@ -487,6 +572,7 @@ width: 30px;
 height: 5px;
 background-color: var(--Clr-White);
 margin: 6px 0;
+transition: 0.3s ease;
 }
 
 /* Media Queries */
@@ -495,14 +581,22 @@ margin: 6px 0;
   aside {
     display: none
   }
+
   main {
     justify-content: center;
   }
+
   .todo-container {
     padding: 2rem 0;
+    width: 90vw;
   }
+
   .btn-hamburger {
     display: block;
     cursor: pointer;
+  }
+
+  .btn-hamburger:hover > div {
+    background-color: rgba(255, 255, 255, 0.5);
   }
 }

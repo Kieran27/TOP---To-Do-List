@@ -1,5 +1,7 @@
 import './styles.css';
 
+import Icon from './assets/delete.svg'
+
 // JS Module Imports
 import uiModule from './UI-Module.js';
 import formModule from './Form-Module.js';

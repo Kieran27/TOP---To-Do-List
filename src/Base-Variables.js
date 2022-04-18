@@ -22,7 +22,6 @@ let objectIndex = 0;
 let toDoArray = [];
 let projectsArray = [];
 
-
 export {
   projectsList,
   createNewProjectBtn,

@@ -4,8 +4,7 @@ import {currentProject, toDoArray, projectsArray} from './Base-Variables.js'
 import Todo from './Todo-Class.js'
 
 export default class Storage {
-
-  static saveTasks() {
+static saveTasks() {
     localStorage.setItem('toDoArray', JSON.stringify(toDoArray))
   }
 
@@ -14,7 +13,7 @@ export default class Storage {
     let parsedTasksArray = JSON.parse(myArray);
     if (!parsedTasksArray) {
       console.log("Huge W")
-    } else  {
+    } else {
       formModule.instantiateLocalStorage(parsedTasksArray);
     }
   }
@@ -50,6 +49,5 @@ export default class Storage {
   static getCurrentProject() {
     currentProject = JSON.parse(localStorage.getItem('currentProject'));
   }
-
 
 }
