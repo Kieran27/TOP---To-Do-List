@@ -16,25 +16,31 @@
   <div class="wrapper">
     <div class="wrapper-tertiary">
       <header class='header'>
+        <div class ='header-left'>
         <button data-id='btn-hamburger' class='btn-hamburger'>
           <div class="line"></div>
           <div class="line"></div>
           <div class="line"></div>
         </button>
         <h1>Todo List</h1>
+        </div>
         <button data-id='btn-clear-local-storage' class="btn-clear-storage">
-          Clear Todo List
+          Clear Todo History
         </button>
       </header>
       <main>
         <aside>
           <nav class="projects-nav">
-            <h3>Projects</h3>
+            <div class="project-nav-header">
+              <h3>Projects</h3>
+            </div>
             <ul data-id='projects-list'>
             </ul>
-            <button data-id='btn-create-new-project' class="btn-create-new-project">
-              <span>+ Create New Project</span>
-            </button>
+            <div class="btn-create-new-project-container">
+              <button data-id='btn-create-new-project' class="btn-create-new-project">
+                <span><span class="create">+</span>Create New Project</span>
+              </button>
+            </div>
           </nav>
         </aside>
         <div data-id="mobile-nav-container" class="mobile-pullout-nav">
@@ -65,16 +71,16 @@
                 <div data-id='btn-todo-check' class="circle"></div>
               </button>
               <div class="todo-info">
-                <p data-id='todo-title'>Hello</p>
+                <p class='todo-title' data-id='todo-title'>Hello</p>
                  <p data-id='todo-date'>Hi</p>
               </div>
             </div>
             <div class="todo-right">
               <div class='todo-right-urgency-container'>
-                <button data-id='btn-todo-delete'>X</button>
+                <button class='btn-todo-delete' data-id='btn-todo-delete'>Delete</button>
               </div>
               <div class="todo-right-expand-container">
-                <button data-id='btn-todo-expand'>O</button>
+                <button class='btn-todo-expand' data-id='btn-todo-expand'>Edit</button>
               </div>
             </div>
           </article>
@@ -122,8 +128,8 @@
               </div>
             </div>
             <div class="expanded-modal-footer">
-              <div class="edit-container"><button data-id='btn-expanded-edit'>Edit</button></div>
-              <div class="delete-container"><button data-id='btn-expanded-dlt'>Delete</button></div>
+              <div class="edit-container"><button class='btn-expanded-edit' data-id='btn-expanded-edit'>Edit</button></div>
+              <div class="delete-container"><button class='btn-expanded-dlt' data-id='btn-expanded-dlt'>Delete</button></div>
             </div>
           </div>
         </section>
