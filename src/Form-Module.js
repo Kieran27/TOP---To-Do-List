@@ -15,18 +15,21 @@ const formModule = (() => {
     const newProjectName = document.getElementById('new-project-name');
     e.preventDefault();
 
-    checkForProjectName(newProjectName)
-    projectsArray.push(newProjectName.value);
-    Storage.saveProjects();
+    if (checkForProjectName(newProjectName)) {
+      alert("Projects Cannot Share The Same Name!")
+    } else {
+      projectsArray.push(newProjectName.value);
+      Storage.saveProjects();
 
-    createNewOption(newProjectName);
-    createNewEditOption(newProjectName);
+      createNewOption(newProjectName);
+      createNewEditOption(newProjectName);
 
-    uiModule.toggleNewProjectModal();
-    uiModule.createNewProject(newProjectName);
-    uiModule.checkIfMobile();
-    uiModule.createNewProjectMobile(newProjectName);
-    uiModule.clearNewProjectInput(newProjectName);
+      uiModule.toggleNewProjectModal();
+      uiModule.createNewProject(newProjectName);
+      uiModule.checkIfMobile();
+      uiModule.createNewProjectMobile(newProjectName);
+      uiModule.clearNewProjectInput(newProjectName);
+    }
   }
 
   const newTaskSubmit = (e) => {
@@ -40,20 +43,22 @@ const formModule = (() => {
 
     currentProject = taskProject.value;
 
-    checkForEqualName(taskName);
+    if (checkForEqualName(taskName)) {
+      alert("Tasks Cannot Share The Same Name!")
+    } else  {
+      // Instantiate New Todo Item
+    const newTodo = new Todo(taskName.value, taskDescription.value, taskDate.value, taskProject.value, taskUrgency.value);
+      toDoArray.push(newTodo);
+      Storage.saveTasks();
+      console.log(toDoArray)
 
-    // Instantiate New Todo Item
-  const newTodo = new Todo(taskName.value, taskDescription.value, taskDate.value, taskProject.value, taskUrgency.value);
-    toDoArray.push(newTodo);
-    Storage.saveTasks();
-    console.log(toDoArray)
-
-    uiModule.toggleNewTaskModal();
-    uiModule.clearNewTaskInputs(taskName, taskDescription, taskDate);
-    uiModule.appendTasks();
-    uiModule.changeOutputTitle(currentProject);
-    uiModule.removeActiveProject();
-    uiModule.setActiveProject();
+      uiModule.toggleNewTaskModal();
+      uiModule.clearNewTaskInputs(taskName, taskDescription, taskDate);
+      uiModule.appendTasks();
+      uiModule.changeOutputTitle(currentProject);
+      uiModule.removeActiveProject();
+      uiModule.setActiveProject();
+    }
   }
 
   const createNewOption = (projectName) => {
@@ -81,24 +86,22 @@ const formModule = (() => {
   }
 
   const checkForProjectName = (name) => {
-  const projectName = name;
-  projectsArray.forEach(project => {
-    if (project.toLowerCase() === projectName.value.toLowerCase()) {
-      alert("Tasks Cannot Share the Same Name!");
-    } else {
+    if (projectsArray.includes(name.value)) {
       return true;
     }
-  })
+    return false;
 }
 
   const checkForEqualName = (name) => {
-    toDoArray.forEach(task => {
-      if (task.title.toLowerCase() === name.value.toLowerCase()) {
-        alert("Tasks Cannot Share The Same Name!")
-      } else {
-
-      }
-    })
+  const taskName = name.value.toLowerCase();
+  let todoTitleArray = toDoArray.map(todo => todo.title.toLowerCase());
+  if (todoTitleArray.includes(taskName)) {
+    todoTitleArray = [];
+    return true;
+  } else {
+    todoTitleArray = [];
+    return false;
+  }
   }
 
   const editTaskSubmit = (e) => {
